@@ -7,9 +7,14 @@ def fizz_buzz(start, stop)
   result = ''
 
   start.upto stop do |i|
-    result += if (i % 3).zero?
-                (i % 5).zero? ? 'FizzBuzz' : 'Fizz'
-              elsif (i % 5).zero?
+    is_fizz = (i % 3).zero?
+    is_buzz = (i % 5).zero?
+
+    result += if is_fizz & is_buzz
+                'FizzBuzz'
+              elsif is_fizz
+                'Fizz'
+              elsif is_buzz
                 'Buzz'
               else
                 i.to_s

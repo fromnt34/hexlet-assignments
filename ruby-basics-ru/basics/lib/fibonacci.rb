@@ -2,19 +2,14 @@
 
 # BEGIN
 def fibonacci(num)
-  return nil if num.negative?
-  return num if num <= 1
+  return if num.negative?
 
-  first_element = 0
-  second_element = 1
-  current_element = nil
-
-  (num - 1).times do
-    current_element = first_element + second_element
-    first_element = second_element
-    second_element = current_element
+  if num.zero?
+    0
+  elsif num <= 2
+    1
+  else
+    fibonacci(num - 2) + fibonacci(num - 1)
   end
-
-  current_element
 end
 # END
