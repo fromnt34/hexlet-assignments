@@ -2,7 +2,7 @@
 
 # BEGIN
 def anagramm?(word1, word2)
-  word1.chars.tally == word2.chars.tally
+  word1.chars.sort == word2.chars.sort
 end
 
 def anagramm_filter(word, check_list)
