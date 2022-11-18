@@ -14,7 +14,7 @@ class StackTest < Minitest::Test
   def test_to_a
     stack = Stack.new ['a', 1]
 
-    assert_equal ['a', 1], stack.to_a
+    assert { ['a', 1] == stack.to_a }
   end
 
   def test_clear!
@@ -51,7 +51,7 @@ class StackTest < Minitest::Test
     @stack.push! 'a'
     @stack.push! 1
 
-    assert_equal @stack.size, 2
+    assert { @stack.size == 2 }
   end
   # END
 end
