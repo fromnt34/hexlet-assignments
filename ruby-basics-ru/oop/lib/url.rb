@@ -5,19 +5,18 @@ require 'uri'
 require 'forwardable'
 
 class Url
-  attr :address, :query_params
+  attr :query_params
 
-  include URI
   extend Forwardable
   include Comparable
 
-  def initialize(address)
-    @address = address
-    @uri = URI(address)
-    @query_params = query_parameters address
+  def initialize(query)
+    @query = query
+    @uri = URI.parse(query)
+    @query_params = query_parameters query
   end
 
-  def_delegators :@uri, :scheme, :host
+  def_delegators :@uri, :to_s, :scheme, :host
 
   def query_param(key, default_value = nil)
     query_params.fetch key, default_value
@@ -28,7 +27,7 @@ class Url
   def <=>(other)
     return unless other.instance_of? Url
 
-    address <=> other.address
+    @query <=> other.to_s
   end
 
   def query_parameters(query)
