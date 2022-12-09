@@ -9,9 +9,11 @@ class Signature
 
   def call(env)
     # BEGIN
-    status, headers, body = @app.call env
+    status, headers, body = response = @app.call(env)
 
-    [status, headers, body << Digest::SHA2.hexdigest(body[0])]
+    return response if status != 200
+
+    [status, headers, body << Digest::SHA2.hexdigest(body.join)]
     # END
   end
 end
