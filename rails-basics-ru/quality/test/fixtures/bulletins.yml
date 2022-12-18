@@ -1,3 +1,8 @@
-bulletin_1:
+bulletin1:
   title: Title 1
   body: Body 1
+  published: false
+bulletin2:
+  title: Title 2
+  body: Body 2
+  published: false
