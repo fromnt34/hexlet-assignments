@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
 def optional(value)
-  [value, ''].sample
+  [value, nil].sample
+end
+
+def generate_attributes
+  status = ['new', 'in proccess', 'completed'].sample
+
+  { name: Faker::Lorem.sentence,
+    description: optional(Faker::Lorem.paragraph),
+    status:,
+    creator: Faker::Name.name,
+    performer: optional(Faker::Name.name),
+    completed: status == 'completed' }
 end

@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+task1:
   name: MyString
   description: MyText
   status: MyString
@@ -8,7 +8,7 @@ one:
   performer: MyString
   completed: false
 
-two:
+task2:
   name: MyString
   description: MyText
   status: MyString

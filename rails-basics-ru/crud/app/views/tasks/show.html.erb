@@ -1,6 +1,6 @@
 <h1>Task №<%= @task.id %> - <%= @task.name %></h1>
 
-<p><%= @task.description %></p>
+<p><%= @task.description if @task.description %></p>
 <p>
   <small>Status: <%= @task.status %></small>
 </p>
@@ -9,7 +9,7 @@
 </p>
 <p>
   <%= @task.creator %>
-  <% if @task.performer != '' %>
+  <% if @task.performer %>
     <small>to</small>
     <%= @task.performer %>
   <% end %>
