@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
@@ -45,7 +47,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find params[:id]
-    
+
     if @task.destroy
       flash[:success] = 'Task was successfully deleted'
 
