@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require_relative '../../db/seeds_helper.rb'
+require_relative '../../db/seeds_helper'
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
