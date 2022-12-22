@@ -1,0 +1,18 @@
+<h1>Task №<%= @task.id %> - <%= @task.name %></h1>
+
+<p><%= @task.description %></p>
+<p>
+  <small>Status: <%= @task.status %></small>
+</p>
+<p>
+  <small><%= @task.completed ? 'Completed' : 'Not completed' %></small>
+</p>
+<p>
+  <%= @task.creator %>
+  <% if @task.performer != '' %>
+    <small>to</small>
+    <%= @task.performer %>
+  <% end %>
+</p>
+
+<%= render partial: 'tasks/partial/actions', task: @task %>
