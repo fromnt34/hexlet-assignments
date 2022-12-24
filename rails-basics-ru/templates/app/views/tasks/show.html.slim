@@ -1,0 +1,9 @@
+h1 Task № #{@task.id} - #{@task.name}
+p = @task.description if @task.description
+p: small Status: #{@task.status}
+p: small = @task.completed ? 'Completed' : 'Not completed'
+p
+  = @task.creator
+  - if @task.performer
+    small< to #{@task.performer}
+= render partial: 'tasks/partial/actions', task: @task
