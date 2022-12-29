@@ -2,6 +2,7 @@
   = form.label :name
   br
   = task.errors.full_messages_for(:name).join(' ') if task.errors.present?
+  br
   = form.text_field :name
   br
 
@@ -13,12 +14,14 @@
   = form.label :status
   br
   = task.errors.full_messages_for(:status).join(' ') if task.errors.present?
+  br
   = form.text_field :status
   br
 
   = form.label :creator
   br
   = task.errors.full_messages_for(:creator).join(' ') if task.errors.present?
+  br
   = form.text_field :creator
   br
 
