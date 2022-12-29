@@ -6,4 +6,4 @@ p
   = @task.creator
   - if @task.performer
     small< to #{@task.performer}
-= render partial: 'tasks/partial/actions', task: @task
+= render 'tasks/partial/actions', task: @task
