@@ -1,0 +1,7 @@
+h1 Post - #{@post.title}
+
+p Body: #{@post.body}
+p Summary: #{@post.summary}
+p Published: #{@post.published}
+
+= render 'posts/partial/actions', post: @post
