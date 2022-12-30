@@ -1,0 +1,67 @@
+# frozen_string_literal: true
+
+class TasksController < ApplicationController
+  def index
+    @tasks = Task.all
+  end
+
+  def show
+    @task = Task.find params[:id]
+  end
+
+  def new
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new task_params
+
+    if @task.save
+      redirect_to @task, notice: 'New task was successfully created'
+    else
+      render(
+        :new,
+        status: :unprocessable_entity,
+        notice: 'Task cannot be created'
+      )
+    end
+  end
+
+  def edit
+    @task = Task.find params[:id]
+  end
+
+  def update
+    @task = Task.find params[:id]
+
+    if @task.update task_params
+      redirect_to @task, notice: 'Task was successfully updated'
+    else
+      render(
+        :edit,
+        status: :unprocessable_entity,
+        notice: 'Task cannot be updated'
+      )
+    end
+  end
+
+  def destroy
+    @task = Task.find params[:id]
+
+    if @task.destroy
+      redirect_to tasks_path, notice: 'Task was successfully deleted'
+    else
+      render(
+        :edit,
+        status: :unprocessable_entity,
+        notice: 'Task cannot be deleted'
+      )
+    end
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:name, :description, :user_id, :status_id)
+  end
+end

@@ -1,0 +1,10 @@
+h1 Task - #{@task.name}
+
+- if @task.description
+  p Body: #{@task.description}
+
+p User: #{@task.user.name}
+small Status: #{@task.status.name}
+br
+
+= render 'tasks/partial/actions', task: @task
