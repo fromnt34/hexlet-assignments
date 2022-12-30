@@ -9,8 +9,8 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     @attrs = {
       name: Faker::Lorem.sentence,
       description: Faker::Lorem.paragraph,
-      user_id: 1,
-      status_id: 1
+      user_id: users(:user1).id,
+      status_id: statuses(:status1).id
     }
   end
 

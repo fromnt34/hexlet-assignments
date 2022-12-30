@@ -3,11 +3,11 @@
 task1:
   name: MyString
   description: MyText
-  user_id: 1
-  status_id: 1
+  user: user1
+  status: status1
 
 task2:
   name: MyString
   description: MyText
-  user_id: 1
-  status_id: 1
+  user: user2
+  status: status2
