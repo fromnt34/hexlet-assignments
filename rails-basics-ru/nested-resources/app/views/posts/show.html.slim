@@ -4,12 +4,11 @@ p
   strong.me-2 Body:
   = @post.body
 / BEGIN
-= render 'comments/partial/form', comment: @comment, url: post_comments_path(@post)
-- @post.post_comments.each do |comment|
+= render 'posts/comments/partial/form', comment: @comment, url: post_comments_path(@post)
+- @post.comments.each do |comment|
   p= comment.body
-  = render 'comments/partial/actions', comment:
+  = render 'posts/comments/partial/actions', post: @post, comment:
   hr
-
 / END
 hr
 

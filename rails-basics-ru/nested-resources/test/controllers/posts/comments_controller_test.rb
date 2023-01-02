@@ -4,41 +4,40 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @post = posts :one
     @comment = post_comments :one
+    @post = @comment.post
     @attrs = {
-      post_id: posts(:one).id,
       body: Faker::Lorem.paragraph
     }
   end
 
-  # test 'should create comment' do
-  #   post post_comments_url(@post), params: { post_comment: @attrs }
-
-  #   comment = PostComment.find_by @attrs
-
-  #   assert { comment }
-  #   assert_redirected_to posts_url(@post)
-  # end
-
   test 'should get edit' do
-    get edit_comment_url(@comment)
+    get edit_post_comment_url(@post, @comment)
     assert_response :success
   end
 
-  # test 'should update comment' do
-  #   patch @comment, params: { comment: @attrs }
+  test 'should create comment' do
+    post post_comments_url(@post), params: { post_comment: @attrs }
 
-  #   @comment.reload
+    comment = @post.comments.find_by @attrs
 
-  #   assert { @comment.body == @attrs[:body] }
-  #   assert_redirected_to posts_path
-  # end
+    assert { comment }
+    assert_redirected_to @post
+  end
 
-  # test 'should destroy comment' do
-  #   delete @comment
+  test 'should update comment' do
+    patch post_comment_path(@post, @comment), params: { post_comment: @attrs }
 
-  #   assert { !PostComment.exists? @comment.id }
-  #   assert_redirected_to posts_path
-  # end
+    @comment.reload
+
+    assert { @comment.body == @attrs[:body] }
+    assert_redirected_to @post
+  end
+
+  test 'should destroy comment' do
+    delete post_comment_path(@post, @comment)
+
+    assert { !PostComment.exists? @comment.id }
+    assert_redirected_to @post
+  end
 end
