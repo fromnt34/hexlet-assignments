@@ -4,15 +4,22 @@ require 'csv'
 
 namespace :hexlet do
   desc 'Create users from .csv file.'
-  task :import_users, [:path] => :environment do |_t, args|
+  task :import_users, %i[path] => :environment do |_t, args|
+    path = args[:path]
+    abort 'Path is required!' unless path
+    puts path
+
+    abort 'Cant find data file!' unless File.exist? path
+
+    data = File.read path
+
     puts 'Starting ro create users'
-    CSV.foreach(args[:path], headers: true) do |data|
+    CSV.parse(data, headers: true).each do |row|
       # изначально birthday - month/day/year
       # нужно - year/month/day
-      birthday = data['birthday'].split('/')
-      data['birthday'] = [birthday[2], birthday[0], birthday[1]].join('/')
+      row['birthday'] = Date.strptime row['birthday'], '%m/%d/%Y'
 
-      User.create(**data)
+      User.create!(**row)
 
       print '.'
     end
